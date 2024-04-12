@@ -1,7 +1,7 @@
-// Fonction pour récupérer les données JSON depuis l'URL
+// Fonction pour récupérer les données JSON localement
 async function fetchData() {
   try {
-    const response = await fetch('https://drive.google.com/uc?id=1vKcItKq-uTLgoVDrL_gZzruzuSL0e_mF');
+    const response = await fetch('bdd.json'); // Assurez-vous que le fichier JSON est dans le même répertoire que votre script
     const data = await response.json();
     return data;
   } catch (error) {
@@ -14,7 +14,7 @@ async function updateData(word, score) {
   try {
     const data = await fetchData();
     data[word] = score;
-    const response = await fetch('https://drive.google.com/uc?id=1vKcItKq-uTLgoVDrL_gZzruzuSL0e_mF', {
+    const response = await fetch('bdd.json', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -45,13 +45,13 @@ function displayResult(totalScore) {
   let backgroundImage;
   let text;
   if (totalScore < 0) {
-    backgroundImage = 'https://st3.depositphotos.com/13194276/35739/i/450/depositphotos_357397270-stock-photo-moon-deep-space.jpg';
+    backgroundImage = 'moon.jpg';
     text = 'Lunaire';
   } else if (totalScore > 0) {
-    backgroundImage = 'https://st3.depositphotos.com/13194276/35739/i/450/depositphotos_357397270-stock-photo-moon-deep-space.jpg';
+    backgroundImage = 'sun.jpg';
     text = 'Solaire';
   } else {
-    backgroundImage = 'https://st3.depositphotos.com/9091648/17303/i/450/depositphotos_173032238-stock-illustration-nebula-the-site-of-star.jpg';
+    backgroundImage = 'cosmos.jpg';
     text = 'Cosmique';
   }
 
